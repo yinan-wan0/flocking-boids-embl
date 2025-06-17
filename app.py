@@ -6,8 +6,9 @@ from matplotlib.markers import MarkerStyle
 
 sys.path.insert(0, os.path.abspath("../../../.."))
 
-#from model import BoidFlockers
-from mesa.examples.basic.boid_flockers.model import BoidFlockers
+from model import BoidFlockers
+#from mesa.examples.basic.boid_flockers.model import BoidFlockers
+from model import BoidFlockers
 from mesa.visualization import Slider, SolaraViz, make_space_component
 
 # Pre-compute markers for different angles (e.g., every 10 degrees)

@@ -80,13 +80,22 @@ class Boid(ContinuousSpaceAgent):
             np.asarray([n.direction for n in neighbors]).sum(axis=0) * self.match_factor
         )
 
+        stochastic_vector = (
+            (np.random.rand(2) - 0.5) * 2 * self.direction
+        )
+
         # Update direction based on the three behaviors
         self.direction += (cohere_vector + separation_vector + match_vector) / len(
             neighbors
         )
+        #print("self.direction=" + str(self.direction))
+        self.direction += stochastic_vector
+        #print("self.direction after stochastic_vector=" + str(self.direction))
 
         # Normalize direction vector
         self.direction /= np.linalg.norm(self.direction)
+
+        #self.direction +=  stochastic_vector
 
         # Move boid
         self.position += self.direction * self.speed
