@@ -1,10 +1,12 @@
 import os
 import sys
+import solara
 
 from matplotlib.markers import MarkerStyle
 
 sys.path.insert(0, os.path.abspath("../../../.."))
 
+#from model import BoidFlockers
 from mesa.examples.basic.boid_flockers.model import BoidFlockers
 from mesa.visualization import Slider, SolaraViz, make_space_component
 
@@ -71,10 +73,15 @@ model_params = {
 
 model = BoidFlockers()
 
+# Convert to a Solara component
+def heading_display(model):
+    return solara.Text(f"Heading: {model.average_heading}, Delta {model.delta_average_heading}")
+
 page = SolaraViz(
     model,
-    components=[make_space_component(agent_portrayal=boid_draw, backend="matplotlib")],
+    components=[heading_display, make_space_component(agent_portrayal=boid_draw, backend="matplotlib")],
     model_params=model_params,
     name="Boid Flocking Model",
 )
+
 page  # noqa

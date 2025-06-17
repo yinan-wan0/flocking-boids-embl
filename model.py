@@ -79,7 +79,7 @@ class BoidFlockers(Model):
         )
 
         # For tracking statistics
-        self.average_heading = None
+        self.delta_average_heading = 0
         self.update_average_heading()
 
     # vectorizing the calculation of angles for all agents
@@ -105,6 +105,10 @@ class BoidFlockers(Model):
 
         All agents are activated in random order using the AgentSet shuffle_do method.
         """
+        old_heading = self.average_heading
+
         self.agents.shuffle_do("step")
         self.update_average_heading()
+        new_heading = self.average_heading
+        self.delta_average_heading = np.absolute(old_heading - self.average_heading)
         self.calculate_angles()
