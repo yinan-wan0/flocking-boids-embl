@@ -81,7 +81,7 @@ class Boid(ContinuousSpaceAgent):
         )
 
         stochastic_vector = (
-            (np.random.rand(2) - 0.5) * 2 * self.direction
+            np.random.rand(2) * self.direction
         )
 
         # Update direction based on the three behaviors
