@@ -14,7 +14,7 @@ sys.path.insert(0, os.path.abspath("../../../.."))
 import numpy as np
 
 from mesa import Model
-from mesa.examples.basic.boid_flockers.agents import Boid
+from agents import Boid
 from mesa.experimental.continuous_space import ContinuousSpace
 
 
